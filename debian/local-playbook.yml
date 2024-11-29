@@ -1,0 +1,173 @@
+---
+- name: Run tasks on localhost
+  hosts: local
+  become: true
+  #vars_files:
+  #  - vault.yml
+  tasks:
+      #- name: Ensure a directory exists
+      #  file:
+      #  path: /tmp/test-directory
+      #  state: directory
+
+    #- name: Print a message
+    #  debug:
+    #    msg: "Hello from Ansible on localhost!"
+
+  - name: update Repository
+    apt:
+      update_cache: yes
+
+  - name: install MC - Midnight Commander
+    apt:
+      name: mc
+
+  - name: install curl
+    apt:
+      name: curl
+
+  - name: install `vim`
+    apt:
+      name: vim
+
+  - name: install `vim-scripts`
+    apt:
+      name: vim-scripts
+
+  - name: install `vim-addon-manager`
+    apt:
+      name: vim-addon-manager
+
+  - name: install `mtr`
+    apt:
+      name: mtr
+
+  - name: install `net-tools`
+    apt:
+      name: net-tools
+
+  - name: install `zip`
+    apt:
+      name: zip
+
+  - name: install `unzip`
+    apt:
+      name: unzip
+
+  - name: install `bzip2`
+    apt:
+      name: bzip2
+
+  - name: install `tar`
+    apt:
+      name: tar
+
+  - name: install `fuse`
+    apt:
+      name: fuse
+
+  - name: install `sudo`
+    apt:
+      name: sudo
+
+  - name: install `bash-completion`
+    apt:
+      name: bash-completion
+
+  - name: install `ntpdate`
+    apt:
+      name: ntpdate
+
+  - name: install `htop`
+    apt:
+      name: htop
+
+  - name: install `ipcalc`
+    apt:
+      name: ipcalc
+
+  - name: install `wget`
+    apt:
+      name: wget
+
+  - name: install `apt-transport-https`
+    apt:
+      name: apt-transport-https
+
+  - name: install `ca-certificates `
+    apt:
+      name: ca-certificates
+
+  - name: install `zstd`
+    apt:
+      name: zstd
+
+  - name: install `liblz4-tool`
+    apt:
+      name: liblz4-tool
+
+  - name: install `p7zip-full`
+    apt:
+      name: p7zip-full
+
+  - name: install `lzip`
+    apt:
+      name: lzip
+
+  #- name: install `netcat`
+    #apt:
+    #  name: netcat
+
+  - name: install `snapd`
+    apt:
+      name: snapd 
+
+  - name: Copy vimrc 
+    command: cp /etc/vim/vimrc /etc/vim/vimrc.orig
+
+  - name: Copy vimrc new settings
+    copy:
+      src: ./dst/etc/vim/vimrc
+      dest: /etc/vim/vimrc
+      owner: root
+      group: root
+      mode: '0644'
+      force: yes
+
+
+  - name: Copy MC Settings
+    become: yes
+    become_user: abndev
+    command: cp ~/.config/mc/ini ~/.config/mc/ini.orig
+
+  - name: Copy MC Settings
+    become: yes
+    become_user: abndev
+    command: cp ~/.config/mc/panels.ini ~/.config/mc/panels.ini.orig
+
+  - name: Copy vimrc new settings
+    become_user: abndev
+    copy:
+      src: ./dst/home/.config/mc/
+      dest: ~/.config/mc/
+      owner: abndev
+      group: abndev
+      mode: '0644'
+      force: yes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

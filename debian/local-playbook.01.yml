@@ -1,0 +1,13 @@
+---
+- name: Run tasks on localhost
+  hosts: local
+  tasks:
+    - name: Ensure a directory exists
+      file:
+        path: /tmp/test-directory
+        state: directory
+
+    - name: Print a message
+      debug:
+        msg: "Hello from Ansible on localhost!"
+
